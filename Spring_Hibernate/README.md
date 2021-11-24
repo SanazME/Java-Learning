@@ -6,3 +6,6 @@ Servlets run in a servlet container which handles the networking side (e.g. pars
 A servlet at its very core is a java class; which can handle HTTP requests. Typically the internal nitty-gritty of reading a HTTP request and response over the wire is taken care of by the containers like Tomcat. This is done so that as a server side developer you can focus on what to do with the HTTP request and responses and not bother about dealing with code that deals with networking etc. The container will take care of things like wrapping the whole thing in a HTTP response object and send it over to the client (say a browser).
 
 Assuming you have a container, your servlets are now java classes whose lifecycle will be maintained by the container but their reaction to incoming HTTP requests will be decided by you. You do that by writing what-you-want-to-do in the pre-defined methods like init(), doGet(), doPost() etc. Look at Resource 3. Simple servlet example: https://www.tutorialspoint.com/servlets/servlets-first-example.htm
+
+### JavaBeans and Spring beans?
+- http://www.shaunabram.com/beans-vs-pojos/
