@@ -13,5 +13,13 @@ public class Main {
         System.out.println(porsche.hashCode());
         System.out.println(porsche.toString());
         System.out.println(porsche.getClass());
+        System.out.println("***********************");
+
+        // Set & Get the model
+        System.out.println("Model is " + porsche.getModel()); // it shows the default value of String class which is null
+        porsche.setModel("4X");
+        System.out.println("Model is " + porsche.getModel());
+        porsche.setModel("Carrera");
+        System.out.println("Model is " + porsche.getModel());
     }
 }

@@ -6,3 +6,4 @@
   - Oracle
   - Azul
   - RedHat
+- `String` is a class in Java and default value of `null`.
