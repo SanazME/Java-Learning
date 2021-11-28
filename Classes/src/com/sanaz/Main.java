@@ -21,5 +21,10 @@ public class Main {
         System.out.println("Model is " + porsche.getModel());
         porsche.setModel("Carrera");
         System.out.println("Model is " + porsche.getModel());
+
+        Person pp = new Person();
+        pp.setAge(14);
+        System.out.println(pp.isTeen());
     }
+
 }
