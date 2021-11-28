@@ -19,6 +19,20 @@ public class BankAccount {
     private String email;
     private String phoneNumber;
 
+    public BankAccount() {
+        this("123234", 0.0, "SomeUser", "someEmail", "1233435");
+        System.out.println("An Empty Constructor!");
+    }
+
+    public BankAccount(String account, double balance, String customerName, String email, String phoneNumber) {
+        System.out.println("Account constructor with params is called!");
+        this.account = account;
+        this.balance = balance;
+        this.customerName = customerName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getAccount() {
         return account;
     }
