@@ -20,5 +20,7 @@ public class Main {
         bank1.deposit(5);
         bank1.withdraw(10);
         System.out.println(bank1.getBalance());
+
+        BankAccount timAccount = new BankAccount("Tim","timEmail@", "somePhone123234");
     }
 }

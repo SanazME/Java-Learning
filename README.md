@@ -29,3 +29,26 @@ Constructor with params is called!
 An empty constructor is called!
 ```
 it first calls the emtpy constructor which first line is a call to the second constructor.
+
+- If we want to default only a subset of params in constructor and not all, we can again use `this`:
+```java
+public class BankAccount {
+  public BankAccount(String customerName, String email, String phoneNumber) {
+    this("99999", 100, customerName, email, phoneNumber);
+  }
+
+  public BankAccount(String account, double balance, String customerName) {
+    System.out.println("Constructor with params is called!");
+  }
+}
+```
+
+- Generally we have one major constructor that update all the fields and then other constructors should call that major constructor.
+
+- There are two opinions on how to set the constructor values to the fields in a class:
+  1. set the value directly to the field: ```this.name = name```
+  2. use a setter: ```setName(name);```;
+  
+  the first approach is preferred because it always works in case of ingeritance and subclassing.
+
+
