@@ -52,3 +52,43 @@ public class BankAccount {
   the first approach is preferred because it always works in case of ingeritance and subclassing.
 
 
+- When a Class `extend` another one (inherits from another one), we need to call the constructor of another class for initialization.
+- `super` is to call the constructor of the class that we're extending from. SO we can initialize the base class.
+```java
+ public class Dog extends Animal {
+  // Unique characteristic of Dog class apart from Animal base class
+  private int eyes;
+  private int legs;
+  private int tail;
+  private int teeth;
+  private String coat;
+  
+  public Dog(int brain, int body, int size, int weight, String name) {
+    super(brain, body, size, weight, name);
+  }
+}
+```
+- Since the Dog class also has params need to be initialized in additon to those from Animal class, we can remove some of base class params from Dog constructor input and pass in some default values to the base class instead:
+```java
+ public class Dog extends Animal {
+  // Unique characteristic of Dog class apart from Animal base class
+  private int eyes;
+  private int legs;
+  private int tail;
+  private int teeth;
+  private String coat;
+  
+  public Dog(int size, int weight, String name, int eyes, int legs, int tail, int teeth, String coat) {
+    super(1, 1, size, weight, name);
+
+    this.eyes = eyes;
+    this.legs = legs;
+    this.tail = tail;
+    this.teeth = teeth;
+    this.coat = coat;
+  }
+}
+```
+
+- In Dog class, we can use `Override methods...` to override methods available from base class for our child/Dog class.
+- `java.lang.Object` Every single class that we create, even though it doesn't come up and show you via the use of `extends` keyword, it does actually get extended from this Java class: `java.lang.Object`.
