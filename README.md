@@ -92,3 +92,66 @@ public class BankAccount {
 
 - In Dog class, we can use `Override methods...` to override methods available from base class for our child/Dog class.
 - `java.lang.Object` Every single class that we create, even though it doesn't come up and show you via the use of `extends` keyword, it does actually get extended from this Java class: `java.lang.Object`.
+
+- we can directly call a Base class method in the child class:
+```java
+public class Animal{
+    //...
+    public void move(int speed){
+      System.out.println("Animal is moving at: " + speed);
+    }
+}
+
+public class Dog extends Animal{
+    // ...
+    public void walk(){
+      System.out.println("Dog.walk() is called");
+      move(5);
+    }
+}
+```
+- If we use `super.move(4)` instead of `move(5)` in Dog class. We need to create some unique characteristic for Dog in move. We see that in `run` method, we don't use `super.move()` and just `move` and since we defined `move` method in Dog class now, it first tried to find the method within the class and if it doesn't it goes to run the superclass one:
+```java
+- public class Animal{
+  //...
+  public void move(int speed){
+    System.out.println("Animal is moving at: " + speed);
+  }
+}
+
+public class Dog extends Animal{
+  // ...
+  public void walk() {
+    System.out.println("Dog.walk() is called");
+    super.move(5);
+  }
+
+  public void run(){
+    System.out.println("Dog.run() is called");
+    move(10);
+  }
+
+  private void moveLegs(int speed){
+    System.out.println("Dog.moveLegs() is called");
+  }
+
+  @Override
+  public void move(int speed) {
+    System.out.println("Dog.move() called.");
+    moveLegs(speed);
+    super.move(speed);
+  }
+}
+
+//dog.run();
+/* output order:
+ * Dog.run() is called
+Dog.move() called.
+Dog.moveLegs() is called
+Animal is moving at: 10
+ * */
+```
+- if we comment out the `@Override` code to remove `move` method from Dog class and rerun, we see that it now runs `move` method from super:
+`Dog.run() is called
+  Animal is moving at: 10`
+- 
