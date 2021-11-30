@@ -8,6 +8,8 @@ public class Main {
 
         // we use base class methods like eat and move in Dog object
         dog.eat();
+        dog.walk();
+        dog.run();
 
     }
 }
