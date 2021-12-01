@@ -154,4 +154,104 @@ Animal is moving at: 10
 - if we comment out the `@Override` code to remove `move` method from Dog class and rerun, we see that it now runs `move` method from super:
 `Dog.run() is called
   Animal is moving at: 10`
-- 
+- In Java, we always have references to objects in memory and we can reference or dereference them by assigning a reference to a new object.
+
+- `this` vs `super`: 
+  - `this` is used to access/call the current class members (variables and methods)
+  - `super` is used to access/call the parent class members (variables or methods)
+  - We can use both of them anywhere in a class except **static areas(static methods of static blocks)**.
+
+- `this` is commonly used with **constructors** and **setters** and optionally for **getters** (easier for beginners).
+```java
+class House {
+    private String color;
+    
+    public House(String color){
+        // this keyword is required
+      this.color = color;
+    }
+    
+    public String getColor(){
+        // this is optional
+      return color; // similar as this.color
+    }
+    
+    public void setColor(String color){
+        // this is required.
+      this.color = color;
+    }
+}
+```
+
+- `super` is commonly used with **method overriding**, when we call a method with the same name from the parent class.
+
+```java
+class SuperClass {
+  public void printMethod() {
+    System.out.println("Printed in Superclass");
+  }
+}
+
+  class SubClass extends SuperClass {
+    // Overrides method from parent
+    @Override
+    public void printMethod() {
+      super.printMethod(); // calls method in SuperClass
+      System.out.println("Printed in SubClass");
+    }
+  }
+  
+  class MainClass{
+    public static void main(String[] args){
+        SubClass s = new SubClass();
+        s.printMethod();
+    }
+  }
+```
+
+### this() vs. super() method calls
+- Use `this()` to call a constructor from another overloaded constructor in the same class.
+- The call to `this()` can be **used only in a constructor, and it must be the first statement in a constructor**.
+- it's uses with constructor chaining, when one constructor calls another constructor and helps to reduce duplicated code.
+
+- **In constructor chaining, always one constructor is responsible for initialization variables and does all the work. The other constructors make calls to other ones.**
+
+- **The only way to call a parent constructor is by calling `super()`. This calls the parent constructor**
+- The Java Compiler puts a **default call to `super()`** if we don't add it, and it's always the no-args `super` which is inserted by compiler.
+- **The call to `super()` must be the first statement in each constructor.**
+- Even **Abstract classes** have constructors, although you can never instantiate an abstract class using `new` keyword.
+- An Abstract class is still a `super` class, so its constructors run when someone makes an instance of a concrete subclass.
+- **A constructor can have a call to `super()` or `this()` but never both.**
+
+### super() and this() example
+- In `Rectangle` the first constructor makes call to the second constructor. 
+- The second constructor makes call to parent constructor with params x and y. 
+- The parent constructor will initialize x, y variables while the second `Rectangle` constructor will initialize the width and height variables.
+
+```java
+class Shape {
+  private int x, y;
+
+  public Shape(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class Rectangle extends Shape {
+  private int width, height;
+
+  // 1st constructor
+  public Rectangle(int x, int y) {
+    this(x, y, 0, 0); // calls 2nd constructor
+  }
+
+  // 2nd constructor
+  public Rectangle(int x, int y, int width, int height){
+      super(x, y); // calls constructor from parent 
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
