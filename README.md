@@ -304,3 +304,20 @@ class Rectangle extends Shape {
 ![Comparison](comparison.png)
 - Covariant return type, means that the Overriden method can return any child type of the parent method type:
 ![Covariant type](covariant.png)
+
+## Static Methods
+- Static methods are declared using a `static` modifier.
+- **Static methods can't access instance methods and instance variables directly**
+- They are usually used for **operations that don't require any data from an instance of the class (from `this`)**. (`this` is the current instance of a class).
+
+- In static methods we cannot use the `this` keyword.
+- Whenever you see a method that **does not use instance variables** that method should be declared as a **static method**.
+- For example `main` is a static method and it is called by JVM when it starts an application.
+- ![staticMethod](staticMethod.png)
+
+## Instance Methods
+- Instance methods belong to an instance of a class.
+- To use an instance method, we have to instantiate the class first usually by using the `new` keyword.
+- Instance methods can access instance methods and instance variables directly.
+- Instance methods can also access **static methods and static variables directly**.
+![shouldStatic](shouldStatic.png)
