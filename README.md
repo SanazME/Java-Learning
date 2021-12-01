@@ -255,3 +255,52 @@ class Rectangle extends Shape {
 }
 ```
 
+## Method Overloading vs Method Overriding
+
+### 1. Method Overloading
+- it means providing two or more separate methods in a class with the **same name but different parameters**.
+- Method return type **may or may not be different** and that allows us to **reuse** the same method name.
+- Overloading is very handy, it reduces duplicated code and we don't have to remember multiple names.
+
+- Overloading does not have anything to do with **polymorphism** but Java developers often refer to overloading as **Compile Time Polymorphism**.
+- In another words, the compile decided which method is going to be called based on the method name, return type and argument list.
+- We **can overload static and instance methods**.
+
+- Usually overloading happens inside a single class but a method can also be treated as overloaded in the subclass of that class.
+- That is because a **subclass inherits** one version of the method from the parent class and then the subclass can have another overloaded version of the method.
+
+### 1.2. Method Overloading Rules
+
+- Methods will be considered overloaded if both follow the following rules:
+  - Methods must have the same method name.
+  - Methods must have different parameters.
+- If methods follow the rules above then they may or may not:
+  - Have different return types
+  - Have different access modifiers (`Default, Private, Protected, Public`)
+  - Throw different checked or unchecked execeptions.
+
+### 2. Method Overriding
+- Method overriding means defining a method in a child class that already exists in the parent class with **the same signature (same name, same arguments)**
+- by extending parent class, the child class gets all the methods defined in the parent class (those methods are also known as derived methods).
+
+- Method overriding is also known as **Runtime Polymorphism** and **Dynamic Method Dispatch**, because the method that is going to be called is decided at runtime by the JVM.
+
+- **We can't override static methods. Only instance methods.**
+
+### 2.2. Method Overriding Rules
+- Method will be considered overriden if we follow these rules:
+  - It must have same name and same arguments
+  - Return type can be a sublass of the return type in the parent class.
+  - It can't have a lower access modifier.
+  - For example if the parent method is protected then using private in the child is not allowed but using public in the child would be allowed.
+
+## 2.3 Method Overriding important points
+- **Only inherited methods can be overriden**, meaning methods can be overriden only in child classes.
+- **Constructors and private methods cannot be overriden.**
+- Methods that are final cannot be overriden.
+- A subclass can use `super.methodName()` to call the superclass version of an overriden method.
+
+- **we can overload static methods but we cannot override static methods.**
+![Comparison](comparison.png)
+- Covariant return type, means that the Overriden method can return any child type of the parent method type:
+![Covariant type](covariant.png)
