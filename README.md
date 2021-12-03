@@ -334,3 +334,66 @@ class Rectangle extends Shape {
   ![staticVar](staticVar.png)
 
 - **Instance variables represent the state of an instance.**
+
+## Composition
+- **Inheritance is a "IS" relationship**. For example, Car (class) IS a Vehicle (parent class).
+- **Composition is a "HAS" relationship.** For example, Car (class) HAS steering wheel (another class), HAS Engine (another class) etc.
+- With Inheritace (`extend`), we can only inherit from one class at a time but with composition we can use HAS relationship and use many classes within a class.
+- For example, Monitor class Has a Resolution but it IS NOT Resolution:
+```java
+public class Monitor {
+  private String model;
+  private String manufacturer;
+  private int size;
+  private Resolution nativeResolution;
+  //
+}
+```
+
+- PC has Monitor, Motherboard and Case:
+```java
+public class PC {
+    private Motherboard motherboard;
+    private Case TheCase;
+    private Monitor monitor;
+
+    // constructor receives objects of those class types
+    public PC(Motherboard motherboard, Case theCase, Monitor monitor) {
+        this.motherboard = motherboard;
+        TheCase = theCase;
+        this.monitor = monitor;
+    }
+
+    // getters return object of that class
+    public Motherboard getMotherboard() {
+        return motherboard;
+    }
+
+    public Case getTheCase() {
+        return TheCase;
+    }
+
+    public Monitor getMonitor() {
+        return monitor;
+    }
+}
+```
+- In order to access a method from a class:
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Motherboard motherboard = new Motherboard("X12", "someManufacturer", 4, 5, "BIOX");
+
+        Case myCase = new Case("model", "man", "power", new Dimensions(23, 10, 5));
+
+        Monitor monitor = new Monitor("model", "man", 23, new Resolution(33, 22));
+
+	    PC myPc = new PC(motherboard, myCase, monitor);
+
+        // To access a method of a class
+        myPc.getMonitor().drawPixelAt(22, 25, "Blue");
+        myPc.getMotherboard().loadProgram("Star War!");
+    }
+}
+```
