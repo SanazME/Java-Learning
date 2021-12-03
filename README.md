@@ -397,3 +397,41 @@ public class Main {
     }
 }
 ```
+- But we don't want to define those method to access classes public so our `Main` class won't have access to those. So we change access pattern from `public` to `private` in our `PC` class and instead define public methods there to make call to other class instances or just get rid of those getters instead:
+```java
+public class PC {
+  private Motherboard motherboard;
+  private Case TheCase;
+  private Monitor monitor;
+
+  public PC(Motherboard motherboard, Case theCase, Monitor monitor) {
+    this.motherboard = motherboard;
+    TheCase = theCase;
+    this.monitor = monitor;
+  }
+
+  public void powerUp() {
+    TheCase.pressPower();
+    drawLogo();
+  }
+
+  public void drawLogo() {
+    // Fancy graphics
+    monitor.drawPixelAt(1200, 50, "yellow");
+  }
+}
+
+public class Main {
+
+  public static void main(String[] args) {
+    Motherboard motherboard = new Motherboard("X12", "someManufacturer", 4, 5, "BIOX");
+    Case myCase = new Case("model", "man", "power", new Dimensions(23, 10, 5));
+    Monitor monitor = new Monitor("model", "man", 23, new Resolution(33, 22));
+    PC myPc = new PC(motherboard, myCase, monitor);
+
+    // To access a method of a class
+    myPc.powerUp();
+  }
+}
+```
+- 

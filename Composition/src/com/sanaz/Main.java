@@ -12,7 +12,6 @@ public class Main {
 	    PC myPc = new PC(motherboard, myCase, monitor);
 
         // To access a method of a class
-        myPc.getMonitor().drawPixelAt(22, 25, "Blue");
-        myPc.getMotherboard().loadProgram("Star War!");
+        myPc.powerUp();
     }
 }
