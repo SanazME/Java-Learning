@@ -301,7 +301,7 @@ class Rectangle extends Shape {
 - A subclass can use `super.methodName()` to call the superclass version of an overriden method.
 
 - **we can overload static methods but we cannot override static methods.**
-![Comparison](comparison.png)
+![Comparison](Comparison.png)
 - Covariant return type, means that the Overriden method can return any child type of the parent method type:
 ![Covariant type](covariant.png)
 
