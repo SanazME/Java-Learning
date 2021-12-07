@@ -437,3 +437,6 @@ public class Main {
 ## Encapsulation
 - By defining a constructor, we can add validations on each field and also set an initial values for the fields. So this way, we make sure that when the object is instantiated, the fields have valid values.
 - Also with a `getter` we can restrict access to the fields of a class.
+
+## Polymorphism
+- 
