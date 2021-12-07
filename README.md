@@ -439,4 +439,5 @@ public class Main {
 - Also with a `getter` we can restrict access to the fields of a class.
 
 ## Polymorphism
-- 
+1. Compile time/Static Polymorphism: method Overloading
+2. Runtime/Dynamic Polymorphism: method Overriding
