@@ -441,3 +441,5 @@ public class Main {
 ## Polymorphism
 1. Compile time/Static Polymorphism: method Overloading
 2. Runtime/Dynamic Polymorphism: method Overriding
+
+- In Java to get a class name within its methods we can use `getClass().getSimpleName()`
