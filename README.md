@@ -443,3 +443,49 @@ public class Main {
 2. Runtime/Dynamic Polymorphism: method Overriding
 
 - In Java to get a class name within its methods we can use `getClass().getSimpleName()`
+
+## Arrays
+```java
+public class Main {
+  public static void main(String[] args) {
+    // Approach 1
+    int[] myVariable;
+    myVariable = new int[10];
+
+    // Approach 2
+    double[] myVar2 = new double[20];
+
+    // Approach 3
+    int[] myVar3 = {1,2,3,4,5,6};
+    
+    // Length of an array
+    myVariable.length
+
+  }
+  
+ // To get inputs from users and save them in an array
+ //For example, this code allows a user to read a number from System.in:
+ private static Scanner scanner = new Scanner(System.in);
+
+    /*
+    * As another example, this code allows long types to be assigned from entries in a file myNumbers:
+
+      Scanner sc = new Scanner(new File("myNumbers"));
+      while (sc.hasNextLong()) {
+          long aLong = sc.nextLong();
+      }
+    * */
+
+  public static int[] getIntegers(int number){
+    System.out.println("Enter " + number + " integer values.\r");
+    int[] values = new int[number];
+
+    for (int i=0; i < values.length; i++){
+      values[i] = scanner.nextInt();
+    }
+
+    return values;
+  }
+}
+```
+- To make sure the returned type is `double` and not `int`, type casting: `(double) sum / (double) arr.length`
