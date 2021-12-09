@@ -490,3 +490,5 @@ public class Main {
 ```
 - To make sure the returned type is `double` and not `int`, type casting: `(double) sum / (double) arr.length`
 - To make a copy of an array instead of a `for` loop: `int[] sortedArr = Arrays.copyOf(arr, arr.length);`
+- For **boolean** array elements are initialized to **False**.
+- For **string or other objects** that would be **null**.
