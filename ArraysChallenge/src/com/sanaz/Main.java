@@ -34,12 +34,13 @@ public class Main {
     }
 
     public static int[] sortIntegers(int[] arr){
-        int[] sortedArr = new int[arr.length];
 
         // Creating a copy of arr
-        for (int i=0; i < arr.length; i++ ) {
-            sortedArr[i] = arr[i];
-        }
+        int[] sortedArr = Arrays.copyOf(arr, arr.length);
+//        int[] sortedArr = new int[arr.length];
+//        for (int i=0; i < arr.length; i++ ) {
+//            sortedArr[i] = arr[i];
+//        }
 
         // Sorting
         for (int i=0; i < sortedArr.length; i++){
