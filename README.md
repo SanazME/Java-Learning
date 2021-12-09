@@ -485,10 +485,17 @@ public class Main {
     }
 
     return values;
+    
   }
 }
 ```
+- To print contents of an array (since it's an object): `Arrays.toString(arr)`
 - To make sure the returned type is `double` and not `int`, type casting: `(double) sum / (double) arr.length`
 - To make a copy of an array instead of a `for` loop: `int[] sortedArr = Arrays.copyOf(arr, arr.length);`
 - For **boolean** array elements are initialized to **False**.
 - For **string or other objects** that would be **null**.
+
+## Reference Types vs Value Types
+- Primitives like `int`, `double` and `boolean` have Value types. When we create a variable with a primitive value and then create another variable with a copy of the first variable. The value is copied to memory and they work independently.
+
+- Any object (anything created using `new`) has Reference type. Like Arrays, objects, strings... The reference holds a reference/address to the object in memory (but not hold the object itself). So if we copy the variable and try to change its value, it will affect all other variables referring to the same object. 
