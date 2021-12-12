@@ -24,6 +24,7 @@ public class Main {
         for (int i=0; i < arr.length; i++){
             arr[i] = scanner.nextInt();
         }
+        System.out.println(Arrays.toString(arr));
         return arr;
     }
 
