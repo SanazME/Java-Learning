@@ -30,4 +30,14 @@ public class GroceryList {
         }
     }
 
+    public String findItem(String searchItem){
+        boolean exists = groceryList.contains(searchItem);
+        if (exists){
+            return searchItem;
+        } else {
+            System.out.println( searchItem + " was not found in the grocery list!");
+            return null;
+        }
+    }
+
 }

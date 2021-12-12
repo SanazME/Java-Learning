@@ -19,5 +19,9 @@ public class Main {
 
         groceryList.removeGrocery(5);
         groceryList.printGroceries();
+
+        // Find an item
+        groceryList.findItem("banana");
+        groceryList.findItem("hammer");
     }
 }
