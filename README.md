@@ -501,3 +501,11 @@ public class Main {
 - Any object (anything created using `new`) has Reference type. Like Arrays, objects, strings... The reference holds a reference/address to the object in memory (but not hold the object itself). So if we copy the variable and try to change its value, it will affect all other variables referring to the same object. 
 
 - We use `myArr = new int[]{3,4,5}`, we **deference the array to point to another address in memory**
+
+## List
+- In general (and in Java) an array is a **data structure** generally consisting of sequential memory storing a collection of objects.
+- **List** is an **interface** in Java, which means that it may have multiple implementations.
+  - One of these implementations is `ArrayList`, which is a class that implements the behavior of the `List` interface using `Arrays` as the data structure.
+  - There are a number of other classes that implement the `List` interface. Like: `AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, Stack, Vector`
+  - Look at doc: https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+  - 
