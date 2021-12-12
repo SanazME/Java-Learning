@@ -11,7 +11,7 @@
 - We can call a constructor within another constructor. One example would be that if a constructor with an empty variables is called, we want to call the second constructor with params and set initial/default value for it params instead. We do it by calling `this(val1, val2, ...)` with default values for params (inputs to other constructors with params):
 ```java
 public class BankAccount{
-    
+
   public BankAccount() {
     this("123234", "345.23", "Bob");
     System.out.println("An empty constructor is called!");
@@ -508,4 +508,13 @@ public class Main {
   - One of these implementations is `ArrayList`, which is a class that implements the behavior of the `List` interface using `Arrays` as the data structure.
   - There are a number of other classes that implement the `List` interface. Like: `AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, Stack, Vector`
   - Look at doc: https://docs.oracle.com/javase/8/docs/api/java/util/List.html
-  - 
+
+## ArrayList
+- ArrayList is a part of collection framework and is present in `java.util` package. It provides us with dynamic arrays in Java. Though, it may be slower than standard arrays but can be helpful in programs where lots of manipulation in the array is needed.
+- Unlike Arrays that we had to define the type when declaring them (`int[] myNUmbers`), We define ArrayList and the type of the **object** that goes inside because an ArrayList can hold objects. So instead of defining the type of the array, we define the type of data that goes inside ArrayList.
+- for ArrayList, we don't create a different type of ArrayList like `String ArrayList`. Instead, we define an ArrayList and then the type of objects going inside it : `private ArrayList<String>`.
+- `private ArrayList<String> groceryList = new ArrayList`
+- Unlike Array, ArrayList is a class so it has its own constructor.
+`private ArrayList<String> groceryList = new ArrayList<String>();`
+
+- 
