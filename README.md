@@ -335,6 +335,23 @@ class Rectangle extends Shape {
 
 - **Instance variables represent the state of an instance.**
 
+## Static method and Static variable (part 2)
+- A static variable is a variable that remembers its value in between uses. It's created outside of a method and methods can interact with it and change the value at will but instead of being destroyed after the method is done the variable remains unchanged until the next method comes along to modify it.
+
+- A static method on the other hand is a method that is a member of a class but is capable of standing alone. Normally when working with objects you have to create an instance of an object in order to call the methods that it contains. An example of this is `Car car = new Car()`; This creates a new instance of the `Car` class type and stores it in a variable called `car`. Then you call methods belonging to that class by running `car.methodName()` Because static methods are standalone that means you can call them without creating a new instance of the class type. You do this by specifying the class then method name.` Car.methodName()` This runs the method `methodName` inside the `Car` class, **but doesn't need to create a new Car in order to do it**.
+
+```java
+public Contact{
+    
+ public static Contact createContact(String name, String phoneNumber) {
+        return new Contact(name, phoneNumber);
+    }
+}
+
+Contact newContact = Contact.createContact(name, phone);
+```
+- The code that you pasted up above is a "stand alone" method that creates a new instance of a Contact object and passes it back to the code that called it. This allows you to create a new Contact without needing to make a temporary instance of the class that createContact() belongs to before calling the method.
+
 ## Composition
 - **Inheritance is a "IS" relationship**. For example, Car (class) IS a Vehicle (parent class).
 - **Composition is a "HAS" relationship.** For example, Car (class) HAS steering wheel (another class), HAS Engine (another class) etc.
@@ -517,4 +534,17 @@ public class Main {
 - Unlike Array, ArrayList is a class so it has its own constructor.
 `private ArrayList<String> groceryList = new ArrayList<String>();`
 
+- `scanner.nextLine();` clear the next line and clears buffer.
+- `next()` can read the input only till the space. It can't read two words separated by a space. Also, `next()` places the cursor in the same line after reading the input.
+- `nextLine()` reads input including space between the words (that is, it reads till the end of line `\n`). Once the input is read, `nextLine()` positions the cursor in the next line.
+- For reading the entire line you can use `nextLine()`.
+- A useful tool for parsing data from `nextLine()` would be `str.split("\\s+")`.
+
+```java
+String data = scanner.nextLine();
+String[] pieces = data.split("\\s+");
+// Parse the pieces
+```
+
+- Advances this scanner past the current line and returns the input that was skipped. This method returns the rest of the current line, excluding any line separator at the end. The position is set to the beginning of the next line.
 - 

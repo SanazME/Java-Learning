@@ -33,6 +33,7 @@ public class GroceryList {
     public String findItem(String searchItem){
         boolean exists = groceryList.contains(searchItem);
         if (exists){
+            System.out.println(searchItem + " was found at index " + groceryList.indexOf(searchItem));
             return searchItem;
         } else {
             System.out.println( searchItem + " was not found in the grocery list!");
