@@ -14,11 +14,29 @@ public class GroceryList {
         System.out.println(groceryList);
     }
 
-    public void modifyGroceryItem(int position, String newItem){
+    public void modifyGroceryItem(String oldItem, String newItem){
+        int idx = findItem(oldItem);
+
+        if (idx >= 0){
+            modifyGroceryItem(idx, newItem);
+        } else {
+            System.out.println(oldItem + " not found!");
+        }
+    }
+
+    private void modifyGroceryItem(int position, String newItem){
         groceryList.set(position, newItem);
     }
 
-    public void removeGrocery(int position){
+    public void removeGrocery(String item){
+        int idx = findItem(item);
+        if (idx >= 0){
+            removeGrocery(idx);
+        } else {
+            System.out.println(item + " is not found in the list.");
+        }
+    }
+    private void removeGrocery(int position){
         try {
             String item = groceryList.get(position);
             groceryList.remove(position);
@@ -30,14 +48,16 @@ public class GroceryList {
         }
     }
 
-    public String findItem(String searchItem){
-        boolean exists = groceryList.contains(searchItem);
-        if (exists){
-            System.out.println(searchItem + " was found at index " + groceryList.indexOf(searchItem));
-            return searchItem;
+    private int findItem(String searchItem){
+        return groceryList.indexOf(searchItem);
+    }
+
+    public boolean onFile(String searchItem){
+        int idx = findItem(searchItem);
+        if (idx >= 0){
+            return true;
         } else {
-            System.out.println( searchItem + " was not found in the grocery list!");
-            return null;
+            return false;
         }
     }
 
