@@ -10,6 +10,10 @@ public class GroceryList {
         groceryList.add(item);
     }
 
+    public ArrayList<String> getGroceryList() {
+        return groceryList;
+    }
+
     public void printGroceries(){
         System.out.println(groceryList);
     }

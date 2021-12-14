@@ -1,5 +1,6 @@
 package com.sanaz;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -37,6 +38,9 @@ public class Main {
                     searchForItem();
                     break;
                 case 6:
+                    processArrayList();
+                    break;
+                case 7:
                     quit = true;
                     break;
                 default:
@@ -56,7 +60,8 @@ public class Main {
         System.out.println("\t 3 - To modify an item in the list.");
         System.out.println("\t 4 - To remove an item from the list.");
         System.out.println("\t 5 - to search for an item in the list.");
-        System.out.println("\t 6 - to quit the application.");
+        System.out.println("\t 6 - to print the content of the list.");
+        System.out.println("\t 7 - to quit the application.");
     }
 
     public static void addItem(){
@@ -86,5 +91,21 @@ public class Main {
         } else {
             System.out.println(searchItem + " not on file.");
         }
+    }
+
+    public static void processArrayList(){
+        // create a new array list
+        ArrayList<String> newArray = new ArrayList<String>();
+        newArray.addAll(groceryList.getGroceryList());
+
+        // shorter way
+        ArrayList<String> newArr = new ArrayList<String>(groceryList.getGroceryList());
+
+        // Convert an ArrayList (object) to Array
+        String[] myArray = new String[groceryList.getGroceryList().size()];
+        myArray = groceryList.getGroceryList().toArray(myArray);
+
+        // shorter way
+//        myArray2 = groceryList.getGroceryList().toArray(new String[0]);
     }
 }

@@ -566,3 +566,42 @@ public void modifyGroceryItem(String oldItem, String newItem){
         groceryList.set(position, newItem);
     }
 ```
+
+- To get a content of an ArrayList from our Grocery class, we define a getter for our ArrayList `groceryList` in that Grocery class and then in `Main` create a new ArrayList and add all elements from that getter ArrayList to the new one:
+```java
+// GroceryList class
+public class GroceryList {
+  private ArrayList<String> groceryList = new ArrayList<String>();
+  
+  public ArrayList<String> getGroceryList() {
+    return groceryList;
+  }
+}
+
+// Main class
+public class Main {
+
+  private static GroceryList groceryList = new GroceryList();
+
+  public static void processArrayList() {
+    // create a new array list
+    ArrayList<String> newArr = new ArrayList<String>(groceryList.getGroceryList());
+    // OR
+    ArrayList<String> newArray = new ArrayList<String>();
+    newArray.addAll(groceryList.getGroceryList());
+
+    
+  }
+}
+```
+
+- To add all elements from one ArrayList to another: `newArr.addAll(oldArr)`
+- Or at the point of creating a new ArrayList: `ArrayList<String> newArr = new ArrayList<String>(oldArr)`
+- This creates a new arraylist initialized with the content of the old arraylist.
+
+- To convert an ArrayList to Array:
+```java
+// Convert an ArrayList (object) to Array
+        String[] myArray = new String[groceryList.getGroceryList().size()];
+        myArray = groceryList.getGroceryList().toArray(myArray);
+```
