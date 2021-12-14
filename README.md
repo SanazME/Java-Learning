@@ -547,4 +547,22 @@ String[] pieces = data.split("\\s+");
 ```
 
 - Advances this scanner past the current line and returns the input that was skipped. This method returns the rest of the current line, excluding any line separator at the end. The position is set to the beginning of the next line.
-- 
+
+
+- In the `GroceryList.java` we had first implemented `modifyGroceryItem` which required position and newItem. But we wanted to leave the details of implementation to that class and in the `Main` the user does not need to know how the list and items are in the list implemented. So In `Main` we defined `modifyItem` method which gets the current and new item and pass it down to  `modifyGroceryItem` method in `GroceryList.java`.
+- But in `GroceryList.java` we then overload that method which gets oldItem and newItem (instead of position) and find the position and calls the first method:
+```java
+public void modifyGroceryItem(String oldItem, String newItem){
+        int idx = findItem(oldItem);
+
+        if (idx >= 0){
+            modifyGroceryItem(idx, newItem);
+        } else {
+            System.out.println(oldItem + " not found!");
+        }
+    }
+
+    private void modifyGroceryItem(int position, String newItem){
+        groceryList.set(position, newItem);
+    }
+```
