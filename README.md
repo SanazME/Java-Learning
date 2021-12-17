@@ -605,3 +605,68 @@ public class Main {
         String[] myArray = new String[groceryList.getGroceryList().size()];
         myArray = groceryList.getGroceryList().toArray(myArray);
 ```
+
+## Singleton Class 
+- a singleton class is a class that can have only one object (an instance of the class) at a time.
+  After first time, if we try to instantiate the Singleton class, the new variable also points to the first instance created. So whatever modifications we do to any variable inside the class through any instance, it affects the variable of the single instance created and is visible if we access that variable through any variable of that class type defined. 
+- The key points in defining singleton class:
+  1. Make constructor private
+  2. Write a static method that has return type object of this singleton class. 
+
+- Here's the Singleton idion:
+```java
+public class MyClass {
+    private static final MyClass myClass = new MyClass();
+
+    private MyClass() {}
+
+    public static MyClass getInstance() {
+        return myClass; 
+    }
+}
+```
+- It should be:
+  - `private`: so that nobody else can access it directly.
+  - `static`: so that there's only one of it.
+  - `final`: so that it cannot be reassigned.
+  - You also need to instantiate it **directly during declaration** so that you don't worry about threading.
+- 
+- If the loading is expensive and you thus rather prefer lazy loading of the Singleton, then consider `Singelton holder (initialization-on-demand holder)` which does initialization on demand instead of during classloading:
+```java
+public class MyClass {
+    private MyClass() {}
+
+    private static class LazyHolder {
+        private static final MyClass myClass = new MyClass();
+    }
+
+    public static MyClass getInstance() {
+        return LazyHolder.myClass;
+    }
+}
+```
+
+## Static Factory methods instead of Constructors
+- A class can provide a **public static factory method** which is simply **a static method that returns an instance of the class.**
+```java
+public static Foo of(....) {return new Foo(..)} 
+```
+
+### Static factory method vs. Singleton objects
+- A static factory method may return new instances, alternate sublcasses of a type, wrap critical logging or registry, compose a number of items into an object, or return back a single static instance.
+
+- They are not required to create a new object each time they're invoked. Unlike `new` which always creates a new object, a factory method could be implemented in some more clever way that reuses an existing object.
+
+- A singleton obtained by any means always resolves back to the same instance. This means there is no variability.
+
+**Advantages**
+1. static facotry methods, unlike constructors, have names (`of`, `from`, `valueOf`, `getInstance`, `newInstance`, `type`)
+2. Unlike constructors, they are not required to create a new object each time they're invoked.
+  - this allows immutable classes to use preconstructed instances or to cache the instances as they're constructed.
+
+3. Unlike constructors, they can **return an object of any subtype of their return type**
+4. The class of the returned object can vary from call to call as a function of the input parameters.
+  - any subtype of the declared return type is permissible. The class of the returned object can also vary from release to release.
+**Disadvantages**
+  - classes without public or protected constructors cannot be subclasses.
+  - they are hard for programmers to find.
