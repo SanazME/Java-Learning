@@ -58,9 +58,17 @@ public class MobilePhone {
 
     public boolean updateContact(Contact oldContact, Contact newContact){
         if (findContact(oldContact) >= 0){
-            int idx = findContact(oldContact);
-            myContacts.set(idx, newContact);
-            return true;
+            // check if the new contact exits in the phonebook
+            System.out.println(findContact(newContact) );
+            if (findContact(newContact.getName()) >= 0){
+                System.out.println("New contact is already existed");
+                return false;
+            } else {
+                int idx = findContact(oldContact);
+                myContacts.set(idx, newContact);
+                return true;
+            }
+
         } else {
             return false;
         }
