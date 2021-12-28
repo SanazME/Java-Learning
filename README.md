@@ -670,3 +670,8 @@ public static Foo of(....) {return new Foo(..)}
 **Disadvantages**
   - classes without public or protected constructors cannot be subclasses.
   - they are hard for programmers to find.
+
+## Difference between an Interface and Abstract class: 
+- https://stackoverflow.com/questions/1913098/what-is-the-difference-between-an-interface-and-abstract-class
+
+## Autoboxing and Unboxing
