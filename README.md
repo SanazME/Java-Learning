@@ -685,3 +685,311 @@ int myIntVal = myInVal;  // myInVal.intValue() unboxing at compile time: convert
 ```java
 s1.equalsIgnoreCase(s2) // "HeLLo" == "hello" returns boolean
 ```
+
+## Nested Classes
+- https://www.tutorialspoint.com/java/java_innerclasses.htm
+- https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#inner-class-and-nested-static-class-example
+
+- Nested classes are divided into 2 categories:
+  1. Inner classes (Non-static nested classes)
+     1. Inner classes
+     2. Local Inner classes (defined in a **block {}**: inside a method, `for` loop, `if` clause)
+     3. Anonymous classes (declare and instantiate a class at the same time)
+  2. Static nested classes
+
+- **Why using nested classes?**
+  - **It is a way of logically grouping classes that are only used in one place**: If a class is useful to only one other class, then it is logical to embed it in that class and keep the two together. Nesting such "helper classes" makes their package more streamlined.
+
+  - **It increases encapsulation**: Consider two top-level classes, A and B, where B needs access to members of A that would otherwise be declared private. By hiding class B within class A, A's members can be declared private and B can access them. In addition, B itself can be hidden from the outside world.
+
+  - **It can lead to more readable and maintainable code**: Nesting small classes within top-level classes places the code closer to where it is used.
+
+### 1.1 Inner Classes
+- Inner classes are a security mechanism in Java. We know a class cannot be associated with the access modifier **private**, but if we have the class as a member of other class, then the inner class can be made private. And this is also used to access the private members of a class.
+```java
+class Outer_Demo {
+   int num;
+   
+   // inner class
+   private class Inner_Demo {
+      public void print() {
+         System.out.println("This is an inner class");
+      }
+   }
+   
+   // Accessing the inner class from the method within
+   void display_Inner() {
+      Inner_Demo inner = new Inner_Demo();
+      inner.print();
+   }
+}
+   
+public class My_class {
+
+   public static void main(String args[]) {
+      // Instantiating the outer class 
+      Outer_Demo outer = new Outer_Demo();
+      
+      // Accessing the display_Inner() method.
+      outer.display_Inner();
+   }
+}
+```
+#### Accessing the Private Members
+- As mentioned earlier, inner classes are also used to access the private members of a class. Suppose, a class is having private members to access them. Write an inner class in it, return the private members from a method within the inner class, say, getValue(), and finally from another class (from which you want to access the private members) call the getValue() method of the inner class.
+
+To instantiate the inner class, initially you have to instantiate the outer class. Thereafter, using the object of the outer class, following is the way in which you can instantiate the inner class.
+
+```java
+Outer_Demo outer = new Outer_Demo();
+Outer_Demo.Inner_Demo inner = outer.new Inner_Demo();
+```
+- The following program shows how to access the private members of a class using inner class.
+```java
+class Outer_Demo {
+   // private variable of the outer class
+   private int num = 175;  
+   
+   // inner class
+   public class Inner_Demo {
+      public int getNum() {
+         System.out.println("This is the getnum method of the inner class");
+         return num;
+      }
+   }
+}
+
+public class My_class2 {
+
+   public static void main(String args[]) {
+      // Instantiating the outer class
+      Outer_Demo outer = new Outer_Demo();
+      
+      // Instantiating the inner class
+      Outer_Demo.Inner_Demo inner = outer.new Inner_Demo();
+      System.out.println(inner.getNum());
+   }
+}
+// output: This is the getnum method of the inner class: 175
+```
+
+### 1.2 Method-local Inner Classes
+- They are defined in a **block {}**: inside a method, `for` loop, `if` clause.
+- In Java, we can write a class within a method and this will be a local type. Like local variables, the scope of the inner class is restricted within the method.
+- A method-local inner class can be instantiated only within the method where the inner class is defined. The following program shows how to use a method-local inner class.
+
+```java
+public class Outerclass {
+   // instance method of the outer class 
+   void my_Method() {
+      int num = 23;
+
+      // method-local inner class
+      class MethodInner_Demo {
+         public void print() {
+            System.out.println("This is method inner class "+num);	   
+         }   
+      } // end of inner class
+	   
+      // Accessing the inner class
+      MethodInner_Demo inner = new MethodInner_Demo();
+      inner.print();
+   }
+   
+   public static void main(String args[]) {
+      Outerclass outer = new Outerclass();
+      outer.my_Method();	   	   
+   }
+}
+
+// output: This is method inner class 23
+```
+### 1.3 Anonymous Classes
+- An inner class declared without a class name is known as an anonymous inner class. In case of anonymous inner classes, we declare and instantiate them at the same time. **Generally, they are used whenever you need to override the method of a class or an interface**. The syntax of an anonymous inner class is as follows
+```java
+AnonymousInner an_inner = new AnonymousInner() {
+   public void my_method() {
+      ........
+      ........
+   }   
+};
+```
+- The following program shows how to:
+  - override the method of an abstract class using anonymous inner class. 
+  - In the same way, you can override the methods of the concrete class as well as ,
+  - the interface using an anonymous inner class.
+
+:
+```java
+abstract class AnonymousInner {
+   public abstract void mymethod();
+}
+
+public class Outer_class {
+
+   public static void main(String args[]) {
+      AnonymousInner inner = new AnonymousInner() {
+         public void mymethod() {
+            System.out.println("This is an example of anonymous inner class");
+         }
+      };
+      inner.mymethod();	
+   }
+}
+// output: This is an example of anonymous inner class
+```
+
+### 1.3.1 Anonymous Inner Class as Argument
+- Generally, if a method accepts **an object** of:
+  - an interface, 
+  - an abstract class, or 
+  - a concrete class, 
+  - 
+then we can:
+  - implement the interface, 
+  - extend the abstract class, 
+  - pass the object to the method. 
+
+**If it is a class, then we can directly pass it to the method.**
+
+- But in all the three cases, you can **pass an anonymous inner class to the method**. Here is the syntax of passing an anonymous inner class as a method argument:
+```java
+obj.my_Method(new My_Class() {
+   public void Do() {
+      .....
+      .....
+   }
+});
+```
+- Example:
+```java
+// interface
+interface Message {
+   String greet();
+}
+
+public class My_class {
+   // method which accepts the object of interface Message
+   public void displayMessage(Message m) {
+      System.out.println(m.greet() +
+         ", This is an example of anonymous inner class as an argument");  
+   }
+
+   public static void main(String args[]) {
+      // Instantiating the class
+      My_class obj = new My_class();
+
+      // Passing an anonymous inner class as an argument
+      obj.displayMessage(new Message() {
+         public String greet() {
+            return "Hello";
+         }
+      });
+   }
+}
+// output: Hello, This is an example of anonymous inner class as an argument
+```
+
+### 2. Static nested classes
+- A static inner class is a nested class which is a static member of the outer class. It can be accessed without instantiating the outer class, using other static members. Just like static members, a static nested class does not have access to the instance variables and methods of the outer class. The syntax of static nested class is as follows −
+- Syntax:
+```java
+class MyOuter {
+   static class Nested_Demo {
+   }
+}
+```
+```java
+public class Outer {
+   static class Nested_Demo {
+      public void my_method() {
+         System.out.println("This is my nested class");
+      }
+   }
+   
+   public static void main(String args[]) {
+      Outer.Nested_Demo nested = new Outer.Nested_Demo();	 
+      nested.my_method();
+   }
+}
+```
+- Another example:
+```java
+public class OuterClass {
+
+  String outerField = "Outer field";
+  static String staticOuterField = "Static outer field";
+
+  class InnerClass {
+    void accessMembers() {
+      System.out.println(outerField);
+      System.out.println(staticOuterField);
+    }
+  }
+
+  static class StaticNestedClass {
+    void accessMembers(OuterClass outer) {
+      // Compiler error: Cannot make a static reference to the non-static
+      //     field outerField
+      // System.out.println(outerField);
+      System.out.println(outer.outerField);
+      System.out.println(staticOuterField);
+    }
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Inner class:");
+    System.out.println("------------");
+    OuterClass outerObject = new OuterClass();
+    OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+    innerObject.accessMembers();
+
+    System.out.println("\nStatic nested class:");
+    System.out.println("--------------------");
+    StaticNestedClass staticNestedObject = new StaticNestedClass();
+    staticNestedObject.accessMembers(outerObject);
+
+    System.out.println("\nTop-level class:");
+    System.out.println("--------------------");
+    TopLevelClass topLevelObject = new TopLevelClass();
+    topLevelObject.accessMembers(outerObject);
+  }
+}
+
+// TopLevelClass.java
+public class TopLevelClass {
+
+  void accessMembers(OuterClass outer) {
+    // Compiler error: Cannot make a static reference to the non-static
+    //     field OuterClass.outerField
+    // System.out.println(OuterClass.outerField);
+    System.out.println(outer.outerField);
+    System.out.println(OuterClass.staticOuterField);
+  }
+}
+/**
+ * Inner class:
+ ------------
+ Outer field
+ Static outer field
+
+ Static nested class:
+ --------------------
+ Outer field
+ Static outer field
+
+ Top-level class:
+ --------------------
+ Outer field
+ Static outer field
+
+ */
+```
+
+### Shadowing
+- https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#inner-class-and-nested-static-class-example
+
+### Serialization
+- (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#inner-class-and-nested-static-class-example)
+- Serialization of inner classes, including local and anonymous classes, is strongly discouraged. When the Java compiler compiles certain constructs, such as inner classes, it creates synthetic constructs; these are classes, methods, fields, and other constructs that do not have a corresponding construct in the source code. Synthetic constructs enable Java compilers to implement new Java language features without changes to the JVM. However, synthetic constructs can vary among different Java compiler implementations, which means that `.class` files can vary among different implementations as well. Consequently, you may have compatibility issues if you serialize an inner class and then deserialize it with a different JRE implementation. See the section Implicit and Synthetic Parameters in the section Obtaining Names of Method Parameters for more information about the synthetic constructs generated when an inner class is compiled.
+
