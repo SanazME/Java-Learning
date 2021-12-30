@@ -675,3 +675,8 @@ public static Foo of(....) {return new Foo(..)}
 - https://stackoverflow.com/questions/1913098/what-is-the-difference-between-an-interface-and-abstract-class
 
 ## Autoboxing and Unboxing
+- Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an `int` to an `Integer`, a `double` to a `Double`, and so on. If the conversion goes the other way, this is called unboxing.
+```java
+Integer myInVal = 56: // at compile time it changes to (autoboxing) --> Integer.valudOf(4)
+int myIntVal = myInVal;  // myInVal.intValue() unboxing at compile time: convert Integer class type back to primary type
+```
