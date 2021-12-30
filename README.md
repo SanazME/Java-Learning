@@ -680,3 +680,8 @@ public static Foo of(....) {return new Foo(..)}
 Integer myInVal = 56: // at compile time it changes to (autoboxing) --> Integer.valudOf(4)
 int myIntVal = myInVal;  // myInVal.intValue() unboxing at compile time: convert Integer class type back to primary type
 ```
+
+**To compare two strings ignoring case sensitivity**:
+```java
+s1.equalsIgnoreCase(s2) // "HeLLo" == "hello" returns boolean
+```
