@@ -996,7 +996,7 @@ public class TopLevelClass {
 ## Lambda Expression
 - They can only be used with interfaces that contain only one method that has to be implemented. Why? 
 - because the compiler needs to match a lambda expression to a method.
-- So these interfaces (with only one method to be implemented) are also called as **Functional Interfaces**.
+- So these interfaces (with only one method to be implemented) are also called as **@FunctionalInterfaces** in the documentations like in `Comparator` docs.
 - In the following examples, instead of options1 or 2, we can use Lambda expression and not defining a class in order to use the only `run` method of class `Runnable`:
 ```java
 public class Main {
@@ -1027,5 +1027,32 @@ class CodeToRun implements Runnable{
     public void run() {
         System.out.println("Printing from the Runnable");
     }
+}
+```
+- For example for comparing name of employees and sort them based on their name in ascending order, we can use Comparators as a functional interface (lambda):
+```java
+public class Main {
+
+  public static void main(String[] args) {
+    //*** sorting employees in ascending order WITHOUT using Lambda
+    Collections.sort(employeeList, new Comparator<Employee>() {
+      @Override
+      public int compare(Employee employee1, Employee employee2) {
+        return employee1.getName().compareTo(employee2.getName());
+      }
+    });
+
+    for (Employee employee : employeeList){
+      System.out.println(employee.getName());
+    }
+
+    // *** sorting employees in ascending order WITH using Lambda
+    Collections.sort(employeeList, (employee1, employee2) -> employee1.getName().compareTo(employee2.getName()));
+
+    for (Employee employee : employeeList){
+      System.out.println(employee.getName());
+    }
+    
+  }
 }
 ```
