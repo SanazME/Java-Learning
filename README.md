@@ -993,3 +993,39 @@ public class TopLevelClass {
 - (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#inner-class-and-nested-static-class-example)
 - Serialization of inner classes, including local and anonymous classes, is strongly discouraged. When the Java compiler compiles certain constructs, such as inner classes, it creates synthetic constructs; these are classes, methods, fields, and other constructs that do not have a corresponding construct in the source code. Synthetic constructs enable Java compilers to implement new Java language features without changes to the JVM. However, synthetic constructs can vary among different Java compiler implementations, which means that `.class` files can vary among different implementations as well. Consequently, you may have compatibility issues if you serialize an inner class and then deserialize it with a different JRE implementation. See the section Implicit and Synthetic Parameters in the section Obtaining Names of Method Parameters for more information about the synthetic constructs generated when an inner class is compiled.
 
+## Lambda Expression
+- They can only be used with interfaces that contain only one method that has to be implemented. Why? 
+- because the compiler needs to match a lambda expression to a method.
+- So these interfaces (with only one method to be implemented) are also called as **Functional Interfaces**.
+- In the following examples, instead of options1 or 2, we can use Lambda expression and not defining a class in order to use the only `run` method of class `Runnable`:
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        // option 1: define a concrete class
+	    new Thread(new CodeToRun()).start();
+        
+        // option 2: anonymous class
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Printing from the Runnable");
+            }
+        }).start();
+        
+        // option 3. Lambda expression - multiple lines
+        new Thread(() -> {
+            System.out.println("Printing from the Runnable");
+            System.out.println("Line 2");
+            System.out.format("This is line %d\n", 3);
+        }).start();
+    }
+}
+
+class CodeToRun implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("Printing from the Runnable");
+    }
+}
+```
