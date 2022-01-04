@@ -606,6 +606,20 @@ public class Main {
         myArray = groceryList.getGroceryList().toArray(myArray);
 ```
 
+## Linked List
+- In a list/array of integers, internally, java will allocate **4 bytes of memory for each integer value.** 
+- Java tries to do it **contiguously**. It uses the formula to figure out which memory address to save the item into:
+`index * 4(bytes) + Address of the first element`:
+- ![List of integers](linkedListInt.png)
+- It is similar for a list of double, java uses up to **8 bytes of memory for each double value**.
+- For a list of Strings (variable size) and objects. The memory allocated in the array is 8 bytes but it actually points to another location in memory where the string is. 
+- The actual strings and their addresses are not saved contiguously but the address to their addresses are saved contiguously in the indexed array:
+- ![List of strings/objects](linkedListString.png)
+
+- Linked list has the value and address of that value + pointer to point to the next item:
+![Linked list](linkedList.png)
+
+
 ## Singleton Class 
 - a singleton class is a class that can have only one object (an instance of the class) at a time.
   After first time, if we try to instantiate the Singleton class, the new variable also points to the first instance created. So whatever modifications we do to any variable inside the class through any instance, it affects the variable of the single instance created and is visible if we access that variable through any variable of that class type defined. 
