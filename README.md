@@ -905,7 +905,7 @@ public class My_class {
 ```
 
 ### 2. Static nested classes
-- A static inner class is a nested class which is a static member of the outer class. It can be accessed without instantiating the outer class, using other static members. Just like static members, a static nested class does not have access to the instance variables and methods of the outer class and that's why (in the following example) we need to pass in the object of that class as an input to the static class.
+- A static inner class is a nested class which is a static member of the outer class. It can be accessed without instantiating the outer class, using other static members. Just like static members, a static nested class does not have access to the instance variables and methods of the outer class.
 - The syntax of static nested class is as follows −
 - Syntax:
 ```java
