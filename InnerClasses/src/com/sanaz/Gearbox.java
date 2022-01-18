@@ -28,6 +28,7 @@ public class Gearbox {
     public void changeGear(int newGear){
         if ((newGear >= 0) &&(newGear < this.gears.size()) && this.clutchIsIn){
             System.out.println("Gear " + newGear + "selected.");
+            this.currentGear = newGear;
         } else {
             System.out.println("Grind!");
             this.currentGear = 0;
